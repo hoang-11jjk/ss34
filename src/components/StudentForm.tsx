@@ -18,13 +18,13 @@ type FormChangeEvent = InputChangeEvent | SelectChangeEvent;
 
 const StudentForm: React.FC<StudentFormProps> = ({ onSubmit }) => {
   const [form, setForm] = React.useState<Student>({
-    id: '',
-    name: '',
-    age: 0,
+    id: 'SV001',
+    name: 'Nguyễn Văn A',
+    age: 20,
     gender: 'Nam',
-    birthday: '',
-    hometown: '',
-    address: '',
+    birthday: '2025-11-11',
+    hometown: 'Hà Nội',
+    address: 'Hà Nội',
   });
 
   const handleChange = (e: FormChangeEvent) => {

@@ -45,7 +45,11 @@ const StudentList: React.FC<StudentListProps> = ({ students }) => {
                   <Button variant="contained" color="warning">
                     Sửa
                   </Button>
-                  <Button variant="contained" color="success">
+                  <Button
+                    variant="contained"
+                    color="success"
+                    onClick={() => confirm('Bạn có chắc chắn muốn xóa không')}
+                  >
                     Xóa
                   </Button>
                 </div>
