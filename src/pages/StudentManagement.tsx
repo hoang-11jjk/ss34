@@ -6,9 +6,7 @@ import { useState } from 'react';
 
 const StudentManagement = () => {
   const [students, setStudents] = useState<Student[]>([
-    { id: 'SV001', name: 'Nguyễn Văn A', age: 20, gender: 'Nam' },
-    { id: 'SV002', name: 'Nguyễn Văn B', age: 21, gender: 'Nữ' },
-    { id: 'SV003', name: 'Nguyễn Văn C', age: 19, gender: 'Nam' },
+    
   ]);
 
   const handleAddStudent = (student: Student) => {
@@ -25,7 +23,7 @@ const StudentManagement = () => {
     <div className="flex gap-6 p-6">
       <div className="flex-1">
         <Toolbar onSearch={handleSearch} />
-        <StudentList students={students} />
+        <StudentList  />
       </div>
       <StudentForm onSubmit={handleAddStudent} />
     </div>

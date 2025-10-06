@@ -9,13 +9,13 @@ import {
 } from '@mui/material';
 
 import React from 'react';
-import type { Student } from '../utils/types';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../store/reducers';
 
-interface StudentListProps {
-  students: Student[];
-}
 
-const StudentList: React.FC<StudentListProps> = ({ students }) => {
+
+const StudentList: React.FC = () => {
+  const studentList = useSelector((state: RootState) => state.students);
   return (
     <TableContainer>
       <Table>
@@ -30,13 +30,13 @@ const StudentList: React.FC<StudentListProps> = ({ students }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {students.map((s, i) => (
-            <TableRow key={s.id}>
-              <TableCell>{i + 1}</TableCell>
-              <TableCell>{s.id}</TableCell>
-              <TableCell>{s.name}</TableCell>
-              <TableCell>{s.age}</TableCell>
-              <TableCell>{s.gender}</TableCell>
+          {studentList.map((student, index) => (
+            <TableRow key={student.id}>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
               <TableCell>
                 <div className="flex gap-2">
                   <Button variant="contained" color="error">
