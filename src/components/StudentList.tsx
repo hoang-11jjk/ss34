@@ -9,13 +9,20 @@ import {
 } from '@mui/material';
 
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import type { RootState } from '../store/reducers';
 
 
 
 const StudentList: React.FC = () => {
   const studentList = useSelector((state: RootState) => state.students);
+  const dispatch = useDispatch();
+  const handleDelete = (id: string) => {
+    dispatch({
+      type: 'DELETE_STUDENT',
+      payload: { id },
+    });
+  };
   return (
     <TableContainer>
       <Table>
@@ -30,13 +37,13 @@ const StudentList: React.FC = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {studentList.map((student, index) => (
+            {studentList.map((student, index) => (
             <TableRow key={student.id}>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
+              <TableCell>{index + 1}</TableCell>
+              <TableCell>{student.id}</TableCell>
+              <TableCell>{student.name}</TableCell>
+              <TableCell>{student.age}</TableCell>
+              <TableCell>{student.gender}</TableCell>
               <TableCell>
                 <div className="flex gap-2">
                   <Button variant="contained" color="error">
@@ -48,7 +55,11 @@ const StudentList: React.FC = () => {
                   <Button
                     variant="contained"
                     color="success"
-                    onClick={() => confirm('Bạn có chắc chắn muốn xóa không')}
+                    onClick={() => {
+                      if (confirm('Bạn có chắc chắn muốn xóa không')) {
+                        handleDelete(student.id);
+                      }
+                    }}
                   >
                     Xóa
                   </Button>

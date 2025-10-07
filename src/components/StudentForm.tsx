@@ -8,6 +8,7 @@ import {
 
 import React from 'react';
 import type { Student } from '../utils/types';
+import { useDispatch } from 'react-redux';
 
 interface StudentFormProps {
   onSubmit: (student: Student) => void;
@@ -17,14 +18,15 @@ type InputChangeEvent = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement
 type FormChangeEvent = InputChangeEvent | SelectChangeEvent;
 
 const StudentForm: React.FC<StudentFormProps> = ({ onSubmit }) => {
+  const dispatch = useDispatch();
   const [form, setForm] = React.useState<Student>({
-    id: 'SV001',
-    name: 'Nguyễn Văn A',
-    age: 20,
+    id: '',
+    name: '',
+    age: 0,
     gender: 'Nam',
-    birthday: '2025-11-11',
-    hometown: 'Hà Nội',
-    address: 'Hà Nội',
+    birthday: '',
+    hometown: '',
+    address: '',
   });
 
   const handleChange = (e: FormChangeEvent) => {
@@ -34,6 +36,7 @@ const StudentForm: React.FC<StudentFormProps> = ({ onSubmit }) => {
 
   const handleSubmit = () => {
     if (!form.id || !form.name) return;
+    dispatch({ type: 'ADD_STUDENT', payload: form });
     onSubmit(form);
     setForm({
       id: '',
